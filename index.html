@@ -1,0 +1,254 @@
+<html>
+        <head><title>Downloaded HTML</title></head>
+        <body>
+            <pre style="white-space: pre-wrap; word-wrap: break-word;"><!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Story For Your Birthday! ✨</title>
+    <style>
+        * { box-sizing: border-box; }
+        
+        body {
+            margin: 0; padding: 0;
+            background: radial-gradient(circle, #2c1a4d, #0f0c1b);
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; overflow-x: hidden;
+        }
+
+        /* Entrance Animation */
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .surprise-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, #3d2366, #090514);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 99999; transition: all 0.6s ease-out; padding: 20px;
+        }
+
+        .instruction-text {
+            color: #ffde59; font-size: 1.3rem; font-weight: bold; margin-bottom: 40px;
+            text-shadow: 0 0 15px rgba(255, 222, 89, 0.4); animation: textPulse 1.5s infinite alternate; text-align: center;
+        }
+
+        .box-container { width: 140px; height: 140px; perspective: 1000px; cursor: pointer; }
+
+        .box-3d {
+            width: 100%; height: 100%; position: relative; transform-style: preserve-3d;
+            transform: rotateX(-20deg) rotateY(45deg); animation: automaticRotate 8s infinite linear;
+        }
+
+        .face {
+            position: absolute; width: 140px; height: 140px; background: linear-gradient(135deg, #ff4757, #ee5253);
+            border: 4px solid #ffde59; display: flex; justify-content: center; align-items: center;
+            font-size: 60px; box-shadow: inset 0 0 30px rgba(0,0,0,0.4);
+        }
+
+        .face::before { content: ''; position: absolute; background: #ffde59; width: 24px; height: 100%; top:0; left:54px; }
+        .face::after { content: ''; position: absolute; background: #ffde59; width: 100%; height: 24px; top:54px; left:0; }
+
+        .f-front  { transform: rotateY(0deg) translateZ(70px); }
+        .f-back   { transform: rotateY(180deg) translateZ(70px); }
+        .f-right  { transform: rotateY(90deg) translateZ(70px); background: #ff6b81; }
+        .f-left   { transform: rotateY(-90deg) translateZ(70px); background: #ff6b81; }
+        .f-top    { transform: rotateX(90deg) translateZ(70px); background: #ff7f50; }
+        .f-bottom { transform: rotateX(-90deg) translateZ(70px); background: #2f3542; }
+
+        .stage-container { width: 92%; max-width: 440px; margin: 20px auto; position: relative; z-index: 10; }
+        h1 { color: #ffde59; font-size: 1.4rem; line-height: 1.4; text-shadow: 0 2px 10px rgba(0,0,0,0.4); margin-bottom: 22px; text-align: center; }
+
+        .card-unit {
+            width: 100%; background: rgba(255, 255, 255, 0.09); backdrop-filter: blur(20px);
+            border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.18); padding: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); margin-bottom: 20px; display: none;
+            animation: slideUp 0.8s ease-out forwards, float 5s ease-in-out infinite;
+        }
+
+        .btn-3d-wrap { position: relative; cursor: pointer; display: block; margin-bottom: 12px; width: 100%; transition: transform 0.2s; }
+        .btn-3d-wrap:active { transform: scale(0.97); }
+        .btn-3d-shadow { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 14px; background: rgba(0, 0, 0, 0.35); transform: translateY(4px); transition: transform 150ms ease; }
+        .btn-3d-edge { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 14px; background: linear-gradient(to left, #4a1c8c 0%, #5f27cd 8%, #5f27cd 92%, #4a1c8c 100%); }
+        .btn-3d-front { display: block; position: relative; padding: 16px 20px; border-radius: 14px; font-size: 1.02rem; font-weight: bold; color: white; background: linear-gradient(135deg, #a29bfe, #6c5ce7); transform: translateY(-4px); transition: transform 150ms ease, background 150ms ease; text-align: left; }
+        
+        .secret-content { 
+            max-height: 0; overflow: hidden; transition: max-height 0.6s ease-in-out;
+        }
+        /* यहाँ ऊंचाई को 500px से बढ़ाकर 1000px कर दिया है ताकि बटन छुपे नहीं */
+        .secret-content.show { max-height: 1000px; padding-top: 18px; }
+        
+        .secret-text { font-size: 0.98rem; line-height: 1.6; color: #ffeaa7; }
+        .mascot-frame { height: 80px; width: 100%; display: flex; justify-content: center; align-items: center; margin-top: 12px; }
+        .mascot-svg { height: 65px; animation: insideSway 2s infinite ease-in-out alternate; }
+
+        .next-card-btn { background: transparent; border: 2px solid #ffde59; color: #ffde59; border-radius: 50px; padding: 12px 30px; font-weight: bold; cursor: pointer; display: none; margin: 22px auto 5px auto; transition: 0.3s; text-align: center; }
+        .next-card-btn:hover { background: #ffde59; color: #2c1a4d; }
+        
+        /* हमेशा दिखने वाला डायरेक्ट बटन (अब स्टाइल सुधारा गया है) */
+        .direct-next-btn { background: transparent; border: 2px solid #ffde59; color: #ffde59; border-radius: 50px; padding: 12px 30px; font-weight: bold; cursor: pointer; display: inline-block; margin: 22px auto 5px auto; transition: 0.3s; text-align: center; }
+        .direct-next-btn:hover { background: #ffde59; color: #2c1a4d; }
+
+        .direct-mahakal-blessing-card { background: linear-gradient(135deg, rgba(230, 126, 34, 0.15), rgba(211, 84, 0, 0.35)); border: 2px solid #e67e22; padding: 30px 24px; }
+        .blessing-text { color: #ffbe76; font-style: italic; font-weight: bold; text-align: center; font-size: 1.05rem; line-height: 1.6; }
+        .footer-wish { font-size: 1.2rem; font-weight: bold; color: #ffde59; margin-top: 18px; text-align: center; }
+
+        .balloon-spawn { position: fixed; bottom: -60px; font-size: 50px; z-index: 9999999; pointer-events: none; animation: globalFloatUp 3s linear forwards; }
+
+        @keyframes automaticRotate { 0% { transform: rotateX(-20deg) rotateY(0deg); } 100% { transform: rotateX(-20deg) rotateY(360deg); } }
+        @keyframes insideSway { 0% { transform: translateY(2px) rotate(-3deg); } 100% { transform: translateY(-2px) rotate(3deg); } }
+        @keyframes textPulse { 0% { transform: scale(0.97); opacity: 0.85; } 100% { transform: scale(1.03); opacity: 1; } }
+        @keyframes globalFloatUp { 0% { transform: translateY(0) scale(0.6); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(-125vh) scale(1.2); opacity: 0; } }
+    </style>
+</head>
+<body>
+
+    <div class="surprise-screen" id="gift-screen">
+        <div class="instruction-text">Tap on the Box ! ✨🎁</div>
+        <div class="box-container" onclick="openSurpriseBox()">
+            <div class="box-3d">
+                <div class="face f-front">💝</div> <div class="face f-back">🎉</div>
+                <div class="face f-right">🎁</div> <div class="face f-left">🎂</div>
+                <div class="face f-top">👑</div> <div class="face f-bottom">✨</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="stage-container">
+        <!-- Card 1 -->
+        <div class="card-unit" id="card-1" style="display: block;"> 
+            <h1>Happiest Birthday to my Special person ❤️ 🥳✨</h1>
+            <div class="btn-3d-wrap" onclick="toggleCardContent(1)">
+                <span class="btn-3d-shadow"></span> <span class="btn-3d-edge"></span>
+                <span class="btn-3d-front">✉️ Open Birthday Wish</span>
+            </div>
+            <div class="secret-content" id="content-1">
+                <div class="secret-text">Wishing you all the happiness and love in the world, today and always. <span style="color:#ff7675; font-weight:bold;">Tum jaise ho, hamesha vaise hi rehna</span> May your day be as pure and beautiful as your soul ✨</div>
+                <button class="next-card-btn" id="next-btn-1" onclick="goToNextCard(1, 2)">Next 👉</button>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card-unit" id="card-2">
+            <h1>Message For You 😊</h1>
+            <div class="btn-3d-wrap" onclick="toggleCardContent(2)">
+                <span class="btn-3d-shadow"></span> <span class="btn-3d-edge"></span>
+                <span class="btn-3d-front">💫 A Message For Your Smile🙂</span>
+            </div>
+            <div class="secret-content" id="content-2">
+                <div class="secret-text">Tumhari yeh pyaari si smile humesha aisi hi bani rahe, kyunki aapki smile hi is duniya ka sabse best gift hai. On your birthday, I hope you receive all the happiness, success aur sukoon jo tum deserve karte ho. 🧿❤️</div>
+                <button class="next-card-btn" id="next-btn-2" onclick="goToNextCard(2, 3)">Next 👉</button>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card-unit" id="card-3">
+            <h1>My Thoughts 🌟</h1>
+            <div class="btn-3d-wrap" onclick="toggleCardContent(3)">
+                <span class="btn-3d-shadow"></span> <span class="btn-3d-edge"></span>
+                <span class="btn-3d-front">✨ My Favorite Thing About You</span>
+            </div>
+            <div class="secret-content" id="content-3">
+                <div class="secret-text"> Hamesha aise hi hanste rehna!😊 or Tension free rha kro aap 😅
+OR aapka nickname to nhi pta pr mene meri taraf से लिख दिया 
+" Hite...   " 
+Jo aapki snap pe h 😆 
+</div>
+                <div class="mascot-frame">
+                    <svg class="mascot-svg" viewBox="0 0 100 100"><circle cx="50" cy="45" r="22" fill="#ffeaa7"/><circle cx="42" cy="42" r="2.5"/><circle cx="58" cy="42" r="2.5"/><path d="M44,52 Q50,58 56,52" fill="none" stroke="#2d3436" stroke-width="2.5"/></svg>
+                </div>
+                <button class="next-card-btn" id="next-btn-3" onclick="goToNextCard(3, 4)">Next 👉</button>
+            </div>
+        </div>
+
+        <!-- Card 4 (Memories) -->
+        <div class="card-unit" id="card-4">
+            <h1>Memories 📸</h1>
+            
+            <!-- मुख्य बटन -->
+            <div class="btn-3d-wrap" onclick="toggleCardContent(4)">
+                <span class="btn-3d-shadow"></span> <span class="btn-3d-edge"></span>
+                <span class="btn-3d-front">📸 view special moments</span>
+            </div>
+
+            <!-- सीक्रेट कंटेंट बॉक्स -->
+            <div class="secret-content" id="content-4" style="text-align: center;">
+                <div class="secret-text">
+                    "Yaadein wo hain jo kabhi purani nahi hoti...🤗"<br>
+                    "or mere pass aapki ak bhi photo nhi h yr 😅🤣<br>
+                    to apka name likha Bs (Himanshi)🫀"
+                    <div style="margin: 15px 0; font-size: 3rem;">✨📸✨</div>
+                </div>
+                <!-- यहाँ 'next' बटन अब पूरी तरह दिखाई देगा -->
+                <button class="direct-next-btn" onclick="goToNextCard(4, 5)">next ✨</button>
+            </div>
+        </div>
+
+        <!-- Card 5 (Mahakal Blessing) -->
+        <div class="card-unit direct-mahakal-blessing-card" id="card-5">
+            <div class="blessing-text">
+                "Baba Mahakal ka aashirwad hmesha aap pr bna rhe, hamesha aise hi muskurate raho aur mast raho! 🫀🙌"
+            </div>
+            <div class="footer-wish">Once again, Happy Birthday Dear! 🎂🥳</div>
+        </div>
+    </div>
+
+    <script>
+        function openSurpriseBox() {
+            blastBalloons();
+            const giftScreen = document.getElementById('gift-screen');
+            giftScreen.style.opacity = '0';
+            setTimeout(() => giftScreen.style.display = 'none', 600);
+        }
+
+        function toggleCardContent(id) {
+            blastBalloons();
+            const content = document.getElementById('content-' + id);
+            content.classList.add('show');
+            
+            setTimeout(() => {
+                const nextBtn = document.getElementById('next-btn-' + id);
+                if(nextBtn) nextBtn.style.display = 'block';
+            }, 200);
+        }
+
+        function goToNextCard(currentId, nextId) {
+            blastBalloons();
+            document.getElementById('card-' + currentId).style.display = 'none';
+            document.getElementById('card-' + nextId).style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            if (nextId === 5) {
+                setTimeout(blastBalloons, 300);
+                setTimeout(blastBalloons, 600);
+            }
+        }
+
+        function blastBalloons() {
+            const burstAmount = 15; 
+            for (let i = 0; i < burstAmount; i++) {
+                const element = document.createElement('div');
+                element.className = 'balloon-spawn';
+                element.innerText = ['🎈', '🎉', '✨', '🎂', '❤️'][Math.floor(Math.random() * 5)];
+                element.style.left = Math.random() * 95 + '%';
+                element.style.animationDuration = (Math.random() * 1.2 + 1.8) + 's';
+                document.body.appendChild(element);
+                setTimeout(() => element.remove(), 3000);
+            }
+        }
+    </script>
+</body>
+</html></pre>
+        </body>
+    </html>
